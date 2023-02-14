@@ -8,7 +8,7 @@
         />
         <img
             v-if="element"
-            :src="`/elements/${element.key}.png`"
+            :src="`elements/${element.key}.png`"
             :alt="element.name"
         />
     </div>
