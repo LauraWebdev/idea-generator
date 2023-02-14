@@ -7,7 +7,7 @@
             alt="Door"
         />
         <img
-            v-else
+            v-if="element"
             :src="`/elements/${element.key}.png`"
             :alt="element.name"
         />

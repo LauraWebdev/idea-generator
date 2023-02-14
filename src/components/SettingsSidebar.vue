@@ -101,18 +101,18 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
-
-const emit = defineEmits(['generate', 'clear', 'toggleTheme']);
+import {PropType, ref} from 'vue';
 
 import ApertureOnLight from '../assets/apertureOnLight.svg';
 import ApertureOnDark from '../assets/apertureOnDark.svg';
 import SettingsItem from './SettingsItem.vue';
 import {TTestElement} from '../elements';
 
+const emit = defineEmits(['generate', 'clear', 'toggleTheme']);
+
 const props = defineProps({
     elements: {
-        type: Array,
+        type: Array as PropType<TTestElement[]>,
         required: true,
     },
 });
@@ -162,10 +162,10 @@ const filterElements = (filter: string) => {
         activeElements.value = [];
         break;
     case 'portal1':
-        activeElements.value = [...props.elements.filter((item: TTestElement) => item.games.includes('portal1'))] as TTestElement[];
+        activeElements.value = [...props.elements].filter((item) => item.games.includes('portal1'));
         break;
     case 'portal2':
-        activeElements.value = [...props.elements.filter((item: TTestElement) => item.games.includes('portal2'))] as TTestElement[];
+        activeElements.value = [...props.elements].filter((item) => item.games.includes('portal2'));
         break;
     }
 };
