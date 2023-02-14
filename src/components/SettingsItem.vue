@@ -4,7 +4,7 @@
         @click="handleClick"
     >
         <img
-            :src="`/elements/${element.key}.png`"
+            :src="`elements/${element.key}.png`"
             :alt="element.name"
         />
         <!-- {{ element.name }} -->
