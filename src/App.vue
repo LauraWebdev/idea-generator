@@ -1,30 +1,54 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+    <IntroScreen />
+    <SettingsSidebar
+        :elements="allElements"
+        @clear="clear"
+        @generate="generate"
+        @toggle-theme="toggleTheme"
+    />
+    <TestVisualizer
+        :test="generatedTest"
+    />
 </template>
 
+<script setup lang="ts">
+import SettingsSidebar from './components/SettingsSidebar.vue';
+import DefaultElements from './elements';
+import {ref} from 'vue';
+import {Test} from './generator';
+import TestVisualizer from './components/TestVisualizer.vue';
+import IntroScreen from './components/IntroScreen.vue';
+
+const allElements = ref([...DefaultElements]);
+const generatedTest = ref(new Test());
+const theme = ref(localStorage.getItem('theme') ?? 'light');
+
+const clear = () => {
+    generatedTest.value.generate([], 1, 3);
+};
+
+const generate = (options: any) => {
+    generatedTest.value.generate(
+        options.elements,
+        options.rooms,
+        options.elementsPerRoom,
+    );
+};
+
+const toggleTheme = () => {
+    if(theme.value === 'light') {
+        theme.value = 'dark';
+    } else {
+        theme.value = 'light';
+    }
+
+    localStorage.setItem('theme', theme.value);
+    document.body.setAttribute('theme', theme.value);
+};
+
+
+document.body.setAttribute('theme', theme.value);
+</script>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>

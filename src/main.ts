@@ -1,5 +1,11 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
 
-createApp(App).mount('#app')
+import '@fontsource/work-sans/variable.css';
+import '@mdi/font/scss/materialdesignicons.scss';
+import './reset.scss';
+import './style.scss';
+
+const Vue = createApp(App);
+
+Vue.mount('#app');
