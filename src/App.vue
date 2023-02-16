@@ -21,7 +21,20 @@ import IntroScreen from './components/IntroScreen.vue';
 
 const allElements = ref([...DefaultElements]);
 const generatedTest = ref(new Test());
-const theme = ref(localStorage.getItem('theme') ?? 'light');
+
+
+const getMediaPreference = () => {
+    const hasDarkPreference = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+    ).matches;
+    if (hasDarkPreference) {
+        return 'dark';
+    } else {
+        return 'light';
+    }
+};
+
+const theme = ref(localStorage.getItem('theme') ?? getMediaPreference());
 
 const clear = () => {
     generatedTest.value.generate([], 1, 3);
@@ -48,6 +61,8 @@ const toggleTheme = () => {
 
 
 document.body.setAttribute('theme', theme.value);
+
+
 </script>
 
 <style scoped>
