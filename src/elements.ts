@@ -61,7 +61,7 @@ export default [
         key: 'funnel-push',
         name: 'Funnel pushing forward',
         description: '',
-        games: ['portal1', 'portal2'],
+        games: ['portal2'],
         dependsOn: [],
     },
     {
@@ -69,7 +69,7 @@ export default [
         key: 'funnel-pull',
         name: 'Funnel pulling back',
         description: '',
-        games: ['portal1', 'portal2'],
+        games: ['portal2'],
         dependsOn: [],
     },
     {
