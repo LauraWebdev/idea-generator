@@ -24,14 +24,14 @@ const generatedTest = ref(new Test());
 
 
 const getMediaPreference = () => {
-  const hasDarkPreference = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
-  if (hasDarkPreference) {
-    return "dark";
-  } else {
-    return "light";
-  }
+    const hasDarkPreference = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+    ).matches;
+    if (hasDarkPreference) {
+        return 'dark';
+    } else {
+        return 'light';
+    }
 };
 
 const theme = ref(localStorage.getItem('theme') ?? getMediaPreference());
