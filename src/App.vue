@@ -35,7 +35,7 @@ const generate = (options: any) => {
     );
 };
 
-const getMediaPreference() {
+const getMediaPreference = () => {
   const hasDarkPreference = window.matchMedia(
     "(prefers-color-scheme: dark)"
   ).matches;
@@ -44,7 +44,7 @@ const getMediaPreference() {
   } else {
     return "light";
   }
-},
+};
 
 const toggleTheme = () => {
     if(theme.value === 'light') {
