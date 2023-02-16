@@ -35,6 +35,17 @@ const generate = (options: any) => {
     );
 };
 
+const getMediaPreference() {
+  const hasDarkPreference = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  if (hasDarkPreference) {
+    return "dark";
+  } else {
+    return "light";
+  }
+},
+
 const toggleTheme = () => {
     if(theme.value === 'light') {
         theme.value = 'dark';
@@ -47,7 +58,9 @@ const toggleTheme = () => {
 };
 
 
-document.body.setAttribute('theme', theme.value);
+document.body.setAttribute('theme', theme.value || getMediaPreference());
+
+
 </script>
 
 <style scoped>
